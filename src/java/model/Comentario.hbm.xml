@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/10/2014 02:52:53 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="model.Comentario" table="comentario" catalog="proyectoingsoft">
+        <id name="idComentario" type="int">
+            <column name="idComentario" />
+            <generator class="assigned" />
+        </id>
+        <timestamp name="timestamp" column="timestamp" />
+        <many-to-one name="usuario" class="model.Usuario" fetch="select">
+            <column name="usaurio" length="9" not-null="true" />
+        </many-to-one>
+        <many-to-one name="curso" class="model.Curso" fetch="select">
+            <column name="curso" not-null="true" />
+        </many-to-one>
+        <property name="valNum" type="big_decimal">
+            <column name="valNum" precision="2" scale="1" not-null="true" />
+        </property>
+        <property name="text" type="string">
+            <column name="text" not-null="true" />
+        </property>
+        <property name="votos" type="int">
+            <column name="votos" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

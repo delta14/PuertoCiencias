@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/10/2014 02:52:53 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="model.Curso" table="curso" catalog="proyectoingsoft">
+        <id name="idCurso" type="int">
+            <column name="idCurso" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="profesor" class="model.Profesor" fetch="select">
+            <column name="Profesor" not-null="true" />
+        </many-to-one>
+        <many-to-one name="materia" class="model.Materia" fetch="select">
+            <column name="Materia" not-null="true" />
+        </many-to-one>
+        <set name="comentarios" table="comentario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="curso" not-null="true" />
+            </key>
+            <one-to-many class="model.Comentario" />
+        </set>
+        <set name="evaluacions" table="evaluacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="curso" not-null="true" />
+            </key>
+            <one-to-many class="model.Evaluacion" />
+        </set>
+    </class>
+</hibernate-mapping>

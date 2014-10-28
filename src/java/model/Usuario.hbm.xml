@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/10/2014 02:52:53 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="model.Usuario" table="usuario" catalog="proyectoingsoft">
+        <id name="idCuenta" type="string">
+            <column name="idCuenta" length="9" />
+            <generator class="assigned" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="30" not-null="true" unique="true" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="50" not-null="true" />
+        </property>
+        <property name="pass" type="string">
+            <column name="pass" length="32" not-null="true" />
+        </property>
+        <set name="comentarios" table="comentario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usaurio" length="9" not-null="true" />
+            </key>
+            <one-to-many class="model.Comentario" />
+        </set>
+    </class>
+</hibernate-mapping>
