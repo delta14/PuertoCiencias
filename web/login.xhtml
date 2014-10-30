@@ -5,36 +5,49 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Puerto Ciencias</title>
+        <link href="#{appBean.baseUrl}resources/css/login.css" type="text/css" rel="stylesheet" />
+       
     </h:head>
+    <header>
+        <h1>Puerto Ciencias</h1>
+    </header>
     <h:body>
         <div class="container">
             <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
             <h:form id="formLogin">
                 <p:growl id="msgs" showDetail="true" />
 
-                <p:panel  header="Puerto Ciencias Inicia Sesion">
+                <p:panel header="Inicia Sesion">
                     <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputLabel for="username" value="Username:" />
-                        <p:inputText id="username" value="#{userLoginView.username}" required="true" label="username" />
+                        <h:outputLabel for="username" value="Correo:" />
+                        <p:inputText id="Correo" value="#{loginBean.username}" 
+                                     required="true" label="correo" />
 
                         <h:outputLabel for="password" value="Password:" />
-                        <p:password id="password" value="#{userLoginView.password}" required="true" label="password" />
+                        <p:password id="Password" value="#{loginBean.password}" 
+                                    required="true" label="password" />
 
                         <f:facet name="footer">
-                            <p:commandButton value="Login" update="growl" actionListener="#{userLoginView.login()}"
+                            <p:commandButton id="loginButton" value="IniciarSesión" update=":growl"
+                                             actionListener="#{loginBean.login(event)}"
                                              oncomplete="handleLoginRequest(xhr, status, args)" />
-                        </f:facet>  
+                            
+                        </f:facet>
+                        <span ><input type="checkbox" name="1" value="1"> Guardar contraseña </input><a href="#" style="margin-left:30px;">Recuperar contraseña</a></span>
+                                
+			<span > <a href="#" style="margin-left:30px;">Registrarse</a></span>
+
                     </h:panelGrid>
                 </p:panel>
             </h:form>
+            
         </div>
         <script type="text/javascript">
             function handleLoginRequest(xhr, status, args) {
                 if (args.validationFailed || !args.loggedIn) {
                     PF('dlg').jq.effect("shake", {times: 5}, 100);
-                }
-                else {
+                } else {
                     PF('dlg').hide();
                     $('#loginLink').fadeOut();
                 }
